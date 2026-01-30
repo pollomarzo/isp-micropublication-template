@@ -6,6 +6,14 @@ on:
       - main
   workflow_dispatch:
 
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
 jobs:
   deploy:
     uses: pollomarzo/scholar-nexus-paper-config/.github/workflows/deploy-paper.yml@main
+    with:
+      base_url: /${{ github.event.repository.name }}
+      # paper-environment-file: paper-environment.yml  # Optional: override if using different filename
